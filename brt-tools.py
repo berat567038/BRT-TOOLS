@@ -1,7 +1,6 @@
 import os
 import subprocess
 import sys
-import tkinter as tk
 import random
 import colorama
 from colorama import Fore
