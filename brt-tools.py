@@ -1,26 +1,32 @@
 import os
-import subprocess
-import sys
-import random
 import colorama
 from colorama import Fore
-import time  # Zaman gecikmesi için eklendi
-
-# Gerekli modülleri yükle
-def modül_yükle(modül_adı):
-    try:
-        __import__(modül_adı)
-    except ImportError:
-        print(f"{modül_adı} modülü eksik, yükleniyor...")
-        subprocess.run([sys.executable, "-m", "pip", "install", modül_adı])
-        __import__(modül_adı)
-
-modül_yükle("colorama")
 
 colorama.init(autoreset=True)
 
-def main():
+def ekran_temizle():
+    # Konsolu temizlemek için
+    if os.name == 'nt':  # Windows için
+        os.system('cls')
+    else:  # Linux/Unix/Android için
+        os.system('clear')
+
+def program_baslangici():
+    # Konsolu temizle ve metni yazdır
+    ekran_temizle()
+    print(Fore.CYAN + """
+  ____  _____ _______   _______ ____   ____  _       _____ 
+ |  _ \\|  __ \\__   __| |__   __/ __ \\ / __ \\| |     / ____|
+ | |_) | |__) | | |       | | | |  | | |  | | |    | (___  
+ |  _ <|  _  /  | |       | | | |  | | |  | | |     \\___ \\ 
+ | |_) | | \\ \\  | |       | | | |__| | |__| | |____ ____) |
+ |____/|_|  \\_\\ |_|       |_|  \\____/ \\____/|______|_____/
+""")
     print(Fore.GREEN + "Merhaba! Komutları görmek için 'help' yazın.")
+
+def main():
+    # Program başlangıcı
+    program_baslangici()
 
     while True:
         komut = input(Fore.YELLOW + "Komut girin: ").strip().lower()
@@ -29,10 +35,10 @@ def main():
             print(Fore.CYAN + "1 - Tarama (trm.exe)\n2 - BIOS Girme (bios.exe)")
         elif komut == "trm.exe":
             print(Fore.MAGENTA + "Tüm programları gösteren tam ekran pencere açılıyor...")
-            subprocess.run("explorer shell:AppsFolder")
+            os.system("explorer shell:AppsFolder")
         elif komut == "bios.exe":
-            print(Fore.RED + "Bilgisayar yeniden başlatılıyor...")
-            os.system("shutdown /r /t 0")
+            print(Fore.RED + "Android cihaz yeniden başlatılıyor...")
+            os.system("reboot")  # Android için yeniden başlatma
         else:
             print(Fore.RED + "Bilinmeyen komut! Lütfen 'help' yazın.")
 
